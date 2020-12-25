@@ -20,7 +20,7 @@ class TopicsController extends Controller
 		return view('topics.index', compact('topics'));
 	}
 
-    public function show(Topic $topic)
+    public function showw(Topic $topic)
     {
         return view('topics.show', compact('topic'));
     }
