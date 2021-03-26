@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Handlers\ImageUploadHandler;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,7 +21,7 @@ class TopicsController extends Controller
 
 	public function index(Request $request, Topic $topic)
 	{
-        $topics = $topic->withOrxder($request->order)
+        $topics = $topic->withOrder($request->order)
             ->with('user', 'category')  // 预加载防止 N+1 问题
             ->paginate(20);
         // $topics = Topic::with('user', 'category')->paginate(30);
@@ -68,4 +69,27 @@ class TopicsController extends Controller
 
 		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
 	}
+
+	// 上传图片逻辑
+    public function uploadImage(Request $request, ImageUploadHandler $uploader){
+        // 初始化返回的json数据
+        $data = [
+            'success' => false,
+            'msg' => '上传失败！',
+            'file_path' => ''
+        ];
+        // 判断是否有上传文件，并赋值给 $file
+        if($file = $request->upload_file){
+            // 图片保存到本地
+            $result = $uploader->save($file, 'topics', \Auth::id(), 1024);
+            // 图片保存成功的话
+            if($result){
+                $data['file_path'] = $result['path'];
+                $data['msg'] = '上传成功！';
+                $data['success'] = true;
+            }
+        }
+
+        return $data;
+    }
 }

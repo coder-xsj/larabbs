@@ -69,6 +69,37 @@
         $(document).ready(function() {
             var editor = new Simditor({
                 textarea: $('#editor'),
+                defaultImage: '{{asset('images/image.png')}}',
+                toolbar: [
+                    'title',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strikethrough',
+                    'fontScale',
+                    'color',
+                    'ol' ,
+                    'ul',
+                    'blockquote',
+                    'code' ,
+                    'table',
+                    'link',
+                    'image',
+                    'hr',
+                    'indent',
+                    'outdent',
+                    'alignment',
+                ],
+                upload: {
+                    url: '{{route('topics.upload_image')}}',
+                    params: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    fileKey: 'upload_file',
+                    connectionCount: 3,
+                    leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
+                },
+                pasteImage: true, //设定是否支持图片黏贴上传，这里我们使用 true 进行开启
             });
         });
     </script>
