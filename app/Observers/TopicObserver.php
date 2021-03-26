@@ -18,4 +18,9 @@ class TopicObserver
     {
         //
     }
+    // 存储话题的摘录
+    public function saving(Topic $topic){
+        $topic->excerpt = make_excerpt($topic->body);
+
+    }
 }

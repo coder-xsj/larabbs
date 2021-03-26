@@ -7,13 +7,14 @@ use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
-use Illuminate\Support\Facades\Auth;
-//use Auth;
+//use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class TopicsController extends Controller
 {
     public function __construct()
     {
+        // 限制未登录用户发帖
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
@@ -42,7 +43,7 @@ class TopicsController extends Controller
 	    $topic->fill($request->all());
 	    $topic->user_id = Auth::id();
 	    $topic->save();
-		$topic = Topic::create($request->all());
+		//$topic = Topic::create($request->all());
 		return redirect()->route('topics.show', $topic->id)->with('success', '帖子创建成功！');
 	}
 
