@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Category;
-
 class Topic extends Model
 {
+
     protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
 
     // 一个话题属于一个分类
@@ -16,7 +16,10 @@ class Topic extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-
+    // 一个帖子下有多条评论
+    public function replies(){
+        return $this->hasMany(Reply::class);
+    }
     public function scopeWithOrder($query, $order)
     {
         // 不同的排序，使用不同的数据读取逻辑
