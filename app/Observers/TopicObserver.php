@@ -29,7 +29,7 @@ class TopicObserver
     }
 
     public function saved(Topic $topic){
-
+        // 进入队列任务
         if ((! $topic->slug))  {
             dispatch(new TranslateSlug($topic));
         }
