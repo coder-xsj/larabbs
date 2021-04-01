@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TopicRepied extends Notification
+class TopicReplied extends Notification
 {
     use Queueable;
     public $reply;
@@ -43,9 +43,9 @@ class TopicRepied extends Notification
         return [
             'reply_id' => $this->reply->id,
             'reply_content' => $this->reply->content,
-            'user_id' => $this->reply->user_id,
-            'user_name' => $this->reply->user_name,
-            'user_avatar' => $this->reply->avatar,
+            'user_id' => $this->reply->user->id,
+            'user_name' => $this->reply->user->name,
+            'user_avatar' => $this->reply->user->avatar,
             'topic_link' => $link,
             'topic_id' => $topic->id,
             'topic_title' => $topic->title,
