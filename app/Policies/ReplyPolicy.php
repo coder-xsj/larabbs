@@ -15,6 +15,10 @@ class ReplyPolicy extends Policy
 
     public function destroy(User $user, Reply $reply)
     {
-        return true;
+        // 当前用户id是否等于当前评论的所属用户id
+        // 当前用户id是否等于帖子所属作者id
+
+        return $user->isAuthorOf($reply) || $user->isAuthorOf($reply->topic);
+        //return  $user->id == $reply->user_id || $user->id == $reply->topic->user_id;
     }
 }

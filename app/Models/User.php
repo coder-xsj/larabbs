@@ -11,20 +11,27 @@ class User extends Authenticatable implements MustVerifyEmailContract
 {
     use Notifiable, MustVerifyEmailTrait;
 
-    use Notifiable {
-        notify as protected laravelNotify;
-    }
-    public function notify($instance){
+//    use Notifiable {
+//        notify as protected laravelNotify;
+//    }
+//    public function notify($instance){
+//
+//        // 判断是否是数据库类型通知，如果不是则不通知
+//        if(method_exists($instance, 'toDatabase')){
+//            // 通知的是自己，就不用了
+//
+//        }
+//
+//        $this->laravelNotify($instance);
+//    }
+
+    public function topicNotify($instance){
         // 通知的是自己，就不用了
         if($this->id == Auth::id()){
             return;
         }
-        // 判断是否是数据库类型通知，如果不是则不通知
-        if(method_exists($instance, 'toDatabase')){
-            $this->increment('notification_count');
-        }
-
-        $this->laravelNotify($instance);
+        $this->increment('notification_count');
+        $this->notify($instance);
     }
 
     // 将消息置0
