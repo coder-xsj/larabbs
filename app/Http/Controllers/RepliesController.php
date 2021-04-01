@@ -17,7 +17,7 @@ class RepliesController extends Controller
 
 	public function store(ReplyRequest $request, Reply $reply)
 	{
-        $reply->content = clean($request->content, 'user_topic_body');
+        $reply->content = clean($request->input('content'), 'user_topic_body');
         $reply->user_id = Auth::id();
         $reply->topic_id = $request->topic_id;
         $reply->save();
