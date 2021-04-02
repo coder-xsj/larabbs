@@ -33,6 +33,9 @@ class TopicObserver
         if ((! $topic->slug))  {
             dispatch(new TranslateSlug($topic));
         }
-
+    }
+    // 删除当前帖子下的评论
+    public function deleted(Topic $topic){
+        \DB::table('replies')->where('topic_id', $topic->id)->delete();
     }
 }

@@ -16,15 +16,20 @@ class ReplyObserver
         // 未读消息 + 1
         $topic->increment('reply_count', 1);
 
-        $topic->reply_count = $topic->replies->count();
-        $topic->save();
+        $topic->updateReplyCount();
 
         // 通知话题作者有新的评论
         $topic->user->topicNotify(new TopicReplied($reply));
     }
 
-    public function updating(Reply $reply)
-    {
-        //
+    public function creating(Reply $reply){
+        $reply->content = clean($reply->content, 'user_topic_body');
     }
+
+    public function deleted(Reply $reply){
+        //
+        $reply->topic->updateReplyCount();
+    }
+
+
 }
