@@ -17,7 +17,7 @@ class ReplyObserver
             $topic = $reply->topic;
             // 未读消息 + 1
             $topic->increment('reply_count', 1);
-            $topic->updateReplyCount();
+            $topic->updateReplyCount($reply);
             // 通知话题作者有新的评论
             $topic->user->topicNotify(new TopicReplied($reply));
         }
@@ -30,7 +30,7 @@ class ReplyObserver
 
     public function deleted(Reply $reply){
         //
-        $reply->topic->updateReplyCount();
+        $reply->topic->updateReplyCount($reply);
     }
 
 
