@@ -53,3 +53,6 @@ Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]
 
 // 通知类
 Route::resource('notifications', 'NotificationsController', ['only' => 'index']);
+
+// 后台拒绝路由
+Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
