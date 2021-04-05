@@ -17,7 +17,7 @@ return [
             'title' => 'ID',
         ],
         'name' => [
-            'title' => '标识',
+            'title' => '角色',
         ],
         'permissions' => [
             'title' => '权限',
@@ -27,6 +27,7 @@ return [
                 foreach ($model->permissions as $permission){
                     $result[] = $permission->name;
                 }
+
 
                 return empty($result) ? 'N/A' : implode('|', $result);
 
@@ -45,7 +46,7 @@ return [
 
     'edit_fields' => [
         'name' => [
-            'title' => '标识',
+            'title' => '角色',
         ],
         'permissions' => [
             'type' => 'relationship',
@@ -59,7 +60,7 @@ return [
             'title' => 'ID',
         ],
         'name' => [
-            'title' => '标识',
+            'title' => '角色',
         ]
     ],
 
@@ -70,8 +71,8 @@ return [
 
     // 表单验证错误时定制错误消息
     'messages' => [
-        'name.required' => '标识不能为空',
-        'name.unique' => '标识已存在',
+        'name.required' => '角色名不能为空',
+        'name.unique' => '角色名已存在',
     ]
 
 

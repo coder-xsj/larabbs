@@ -36,7 +36,7 @@ return [
             'title' => 'ID',
         ],
         'name' => [
-            'title'    => '标示',
+            'title'    => '权限名',
         ],
         'operation' => [
             'title'    => '管理',
@@ -60,7 +60,7 @@ return [
 
     'filters' => [
         'name' => [
-            'title' => '标示',
+            'title' => '权限名',
         ],
     ],
 ];

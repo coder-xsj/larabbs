@@ -22,7 +22,7 @@ return [
     // 字段负责渲染『数据表格』，由无数的『列』组成，
     'columns' => [
         'id' => [
-            'title' => 'ID'
+            'title' => '用户 ID'
         ],
         'avatar' => [
             // 数据表格里列的名称，默认会使用『列标识』
@@ -38,11 +38,20 @@ return [
         ],
         'name' => [
             'title' => '用户名',
+            'sortable' => false,
+            'output' => function ($name, $model){
+                        return '<a href="/users/'.$model->id.'" target=_blank>'.$name.'</a>';
+
+            }
         ],
         'email' => [
-            'title' => 'Email',
+            'title' => '邮箱',
+
         ],
-        'created_at',
+        'created_at' =>[
+            'title' => '创建时间',
+            'sortable' => true,
+        ],
 
         'operation' => [
             'title'  => '管理',
@@ -60,7 +69,7 @@ return [
             'type' => 'text'
         ],
         'email' => [
-            'title' => 'Email',
+            'title' => '邮箱',
         ],
         'password' => [
             'title' => '密码',
@@ -77,6 +86,10 @@ return [
             // 图片上传必须设置图片存放路径
             'location' => public_path() . '/uploads/images/avatars/',
         ],
+        // 把 roles 这个字段的类型设为关联，
+        // 说明 roles 这个字段的数据其实是来自 roles 模型的某一列，
+        // users 模型与 roles 模型是一对多的关系，
+        // 所以将看到一个多选框
         'roles' => [
             'title'      => '用户角色',
 
@@ -86,18 +99,24 @@ return [
             // 关联模型的字段，用来做关联显示
             'name_field' => 'name',
         ],
+
+        'permissions' => [
+            'title' => '用户权限',
+            'type' => 'relationship',
+            'name_field' => 'name',
+        ]
     ],
 
     // 数据过滤--筛选功能
     'filters' => [
         'id' => [
-            'title' => 'ID',
+            'title' => '用户 ID',
         ],
         'name' => [
             'title' => '用户名',
         ],
         'email' => [
-            'title' => 'Email',
+            'title' => '邮箱',
         ],
     ],
 ];

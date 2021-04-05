@@ -51,7 +51,7 @@ return [
             'title'              => '用户',
             'type'               => 'relationship',
             'name_field'         => 'name',
-
+            // 牛逼
             // 自动补全，对于大数据量的对应关系，推荐开启自动补全，
             // 可防止一次性加载对系统造成负担
             'autocomplete'       => true,
@@ -70,7 +70,12 @@ return [
             'options_sort_field' => 'id',
         ],
         'reply_count' => [
-            'title'    => '评论',
+            'title'    => '评论数',
+            'sortable' => false,
+            'output' => function($value, $model){
+                // 咋没生效
+                return $model->replies->count();
+            }
         ],
         'view_count' => [
             'title'    => '查看',
