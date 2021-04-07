@@ -2,7 +2,6 @@
 
 use Spatie\Permission\Models\Role;
 
-
 return [
     'title'  => '角色',
     'single' => '角色',
