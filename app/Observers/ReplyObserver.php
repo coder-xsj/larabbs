@@ -14,12 +14,9 @@ class ReplyObserver
     {
         // 命令允许迁移时不做这些操作
         if(!app()->runningInConsole()){
-            $topic = $reply->topic;
-            // 未读消息 + 1
-            $topic->increment('reply_count', 1);
-            $topic->updateReplyCount($reply);
+            $reply->topic->updateReplyCount($reply);
             // 通知话题作者有新的评论
-            $topic->user->topicNotify(new TopicReplied($reply));
+            $reply->topic->user->notify(new TopicReplied($reply));
         }
 
     }
