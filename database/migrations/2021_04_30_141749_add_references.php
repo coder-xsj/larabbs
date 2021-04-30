@@ -13,9 +13,12 @@ class AddReferences extends Migration
      */
     public function up()
     {
-        // 当user_id 对应的users表数据被删除时，删除话题
         Schema::table('topics', function (Blueprint $table){
+            // 当user_id 对应的users表数据被删除时，删除话题
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // 当category_id 对应的replies表数据被删除时，删除词条数据
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
@@ -25,7 +28,11 @@ class AddReferences extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             // 这条是评论---帖子
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
+
+
         });
+
+
 
     }
 
