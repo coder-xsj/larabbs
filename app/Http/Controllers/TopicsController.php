@@ -30,8 +30,10 @@ class TopicsController extends Controller
         $links = $link->getAllCached(); // 获取
         // dd($active_users);
         // $topics = Topic::with('user', 'category')->paginate(30);
+        //dd($active_users);
 		return view('topics.index', compact('topics', 'active_users', 'links'));
 	}
+
 
     public function show(Request $request, Topic $topic)
     {
