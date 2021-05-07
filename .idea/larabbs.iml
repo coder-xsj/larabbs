@@ -124,6 +124,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/overtrue/easy-sms" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/overtrue/laravel-socialite" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/overtrue/socialite" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
