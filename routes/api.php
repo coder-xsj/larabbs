@@ -18,8 +18,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->name('api.v1.')->group(function (){
-
+// api版本测试
+Route::prefix('v1')
+    ->namespace('api')
+    ->name('api.v1.')
+    ->group(function (){
+        // 用户注册
+        Route::post('users', 'UsersController@store')->name('users.store');
+        // 第三方登录
+        Route::post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
+            ->where('social_type', 'wechat|weibo') // 支持微信和微博
+            ->name('socials.authorizations.store');
 });
+
 
 
