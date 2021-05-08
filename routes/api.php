@@ -29,6 +29,14 @@ Route::prefix('v1')
         Route::post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
             ->where('social_type', 'wechat|weibo') // 支持微信和微博
             ->name('socials.authorizations.store');
+        // 登录
+        Route::post('authorizations', 'AuthorizationsController@store')
+            ->name('authorizations.store');
+        // 删除和刷新 token 的路由
+        Route::put('authorizations/current', 'AuthorizationsController@update')
+            ->name('authorizations.update');
+        Route::delete('authorizations/current', 'AuthorizationsController@destroy')
+            ->name('authorizations.destroy');
 });
 
 
