@@ -20,9 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // api版本测试
 Route::prefix('v1')
-    ->namespace('api')
+    ->namespace('Api')
     ->name('api.v1.')
     ->group(function (){
+        Route::post('verificationCodes', 'VerificationCodesController@store')
+            ->name('verificationCodes.store');
+
         // 用户注册
         Route::post('users', 'UsersController@store')->name('users.store');
         // 第三方登录

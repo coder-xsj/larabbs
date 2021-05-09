@@ -22,6 +22,9 @@ return [
             'access_key_id' => env('SMS_ALIYUN_ACCESS_KEY_ID'),
             'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET'),
             'sign_name' => 'larabbs',
+            'template' => [
+                'register' => env('SMS_ALIYUN_TEMPLATE_REGISTER')
+            ],
         ],
         'yunpian' => [
             'api_key' => env('SMS_YUMPIAN_API_KEY_ID'),
