@@ -10,6 +10,7 @@ return [
         // 默认可以发送的网关
         'gateways' => [
             'aliyun',
+            'yunpian'
         ],
     ],
     // 可用的网关配置
@@ -21,6 +22,10 @@ return [
             'access_key_id' => env('SMS_ALIYUN_ACCESS_KEY_ID'),
             'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET'),
             'sign_name' => 'larabbs',
+        ],
+        'yunpian' => [
+            'api_key' => env('SMS_YUMPIAN_API_KEY_ID'),
+            'sign_name' => env('SMS_YUNPIAN_SIGN_NAME'),
         ],
     ],
 ];

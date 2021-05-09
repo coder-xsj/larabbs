@@ -100,7 +100,11 @@ class AuthorizationsController extends Controller
     public function destroy(){
         auth('api')->logout();
         return response(null, 204);
+
+
     }
 
 
 }
+
+
