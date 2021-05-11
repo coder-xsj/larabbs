@@ -23,23 +23,27 @@ Route::prefix('v1')
     ->namespace('Api')
     ->name('api.v1.')
     ->group(function (){
-        Route::post('verificationCodes', 'VerificationCodesController@store')
-            ->name('verificationCodes.store');
+        Route::middleware('throttle:' . config('api.rate.limits.sign'))
+            ->group(function (){
+                // 短信验证码
+                Route::post('verificationCodes', 'VerificationCodesController@store')
+                    ->name('verificationCodes.store');
+                // 用户注册
+                Route::post('users', 'UsersController@store')->name('users.store');
+                // 第三方登录
+                Route::post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
+                    ->where('social_type', 'wechat|weibo') // 支持微信和微博
+                    ->name('socials.authorizations.store');
+                // 登录
+                Route::post('authorizations', 'AuthorizationsController@store')
+                    ->name('authorizations.store');
+                // 删除和刷新 token 的路由
+                Route::put('authorizations/current', 'AuthorizationsController@update')
+                    ->name('authorizations.update');
+                Route::delete('authorizations/current', 'AuthorizationsController@destroy')
+                    ->name('authorizations.destroy');
+            });
 
-        // 用户注册
-        Route::post('users', 'UsersController@store')->name('users.store');
-        // 第三方登录
-        Route::post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
-            ->where('social_type', 'wechat|weibo') // 支持微信和微博
-            ->name('socials.authorizations.store');
-        // 登录
-        Route::post('authorizations', 'AuthorizationsController@store')
-            ->name('authorizations.store');
-        // 删除和刷新 token 的路由
-        Route::put('authorizations/current', 'AuthorizationsController@update')
-            ->name('authorizations.update');
-        Route::delete('authorizations/current', 'AuthorizationsController@destroy')
-            ->name('authorizations.destroy');
 
         Route::middleware('throttle' . config('api.rate_limits.access'))
             ->group(function (){
