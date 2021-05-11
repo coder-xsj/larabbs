@@ -8,7 +8,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Auth;
 use Spatie\Permission\Traits\HasRoles;
-class User extends Authenticatable implements MustVerifyEmailContract
+use Tymon\JWTAuth\Contracts\JWTSubject;
+class User extends Authenticatable implements MustVerifyEmailContract, JWTSubject
 {
     use Notifiable, MustVerifyEmailTrait, HasRoles;
     use Traits\ActiveUserHelper;
@@ -17,6 +18,18 @@ class User extends Authenticatable implements MustVerifyEmailContract
         notify as protected laravelNotify;
     }
 
+
+    public function getJWTIdentifier()
+    {
+        // TODO: Implement getJWTIdentifier() method.
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        // TODO: Implement getJWTCustomClaims() method.
+        return [];
+    }
 
     public function notify($instance){
         // 判断是否是数据库类型通知，如果不是则不通知
@@ -45,6 +58,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
      */
     protected $fillable = [
         'name', 'email', 'password', 'introduction', 'avatar',
+        'weixin_openid', 'weixin_unionid', 'phone',
     ];
 
     /**
@@ -100,4 +114,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
         }
         $this->attributes['avatar'] = $path;
     }
+
+
 }
