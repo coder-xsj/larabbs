@@ -48,14 +48,14 @@ Route::prefix('v1')
             });
 
 
-        Route::middleware('throttle' . config('api.rate_limits.access'))
+        Route::middleware('throttle:' . config('api.rate_limits.access'))
             ->group(function (){
                 // 游客可以访问的接口
                 // 某个用户的详情
                 Route::get('users/{user}', 'UsersController@show')
                     ->name('users.show');
 
-                Route::middleware('auth.api')->group(function (){
+                Route::middleware('auth:api')->group(function (){
                     // 登陆后可以访问的接口
                     // 当前登录用户信息
                     Route::get('user', 'UsersController@me')

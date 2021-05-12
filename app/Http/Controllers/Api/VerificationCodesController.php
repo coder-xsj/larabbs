@@ -25,6 +25,7 @@ class VerificationCodesController extends Controller
         }
 
         $phone = $request->phone;
+        // 如果不是生产环境验证码统一
         if(!app()->environment('production')){
             $code = '1234';
         }else{
