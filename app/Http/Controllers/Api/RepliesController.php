@@ -20,4 +20,14 @@ class RepliesController extends Controller
 
         return new ReplyResource($reply);
     }
+
+    public function destroy(Topic $topic, Reply $reply){
+        if($reply->topic_id != $topic->id){
+            abort(404);
+        }
+        $this->authorize('destroy', $reply);
+        $reply->delete();
+
+        return response(null, 204);
+    }
 }
