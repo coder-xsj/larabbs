@@ -85,6 +85,9 @@ return [
         'id' => [
             'title' => '内容 ID',
         ],
+        'title' => [
+            'title' => '话题标题',
+        ],
         'user' => [
             'title'              => '用户',
             'type'               => 'relationship',
