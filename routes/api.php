@@ -83,6 +83,10 @@ Route::prefix('v1')
                     // 发布话题
                     Route::resource('topics', 'TopicsController')
                         ->only(['store', 'update', 'destroy']);
+
+                    // 发布评论
+                    Route::post('topics/{topic}/replies', 'RepliesController@store')
+                        ->name('topics.replies.store');
                 });
             });
 });
