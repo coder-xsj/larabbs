@@ -66,6 +66,14 @@ Route::prefix('v1')
                 Route::get('users/{user}/topics', 'TopicsController@userIndex')
                     ->name('users.topics.index');
 
+                // 某个话题的评论列表
+                Route::get('topics/{topic}/replies', 'RepliesController@index')
+                    ->name('topics.replies.index');
+
+                // 某个用户的评论列表
+                Route::get('users/{user}/replies', 'RepliesController@userIndex')
+                    ->name('users.replies.index');
+
                 Route::middleware('auth:api')->group(function (){
                     // 登陆后可以访问的接口
                     // 当前登录用户信息
