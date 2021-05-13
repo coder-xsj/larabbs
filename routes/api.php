@@ -99,6 +99,10 @@ Route::prefix('v1')
                     // 删除评论
                     Route::delete('topics/{topic}/replies/{reply}', 'RepliesController@destroy')
                         ->name('topics.replies.destroy');
+
+                    // 用户通知列表
+                    Route::get('notifications', 'NotificationsController@index')
+                        ->name('notifications.index');
                 });
             });
 });
