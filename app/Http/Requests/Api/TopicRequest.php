@@ -36,7 +36,7 @@ class TopicRequest extends FormRequest
                 return [
                     'title' => 'string',
                     'body' => 'string',
-                    'category_id' => 'exists:category_id,id',
+                    'category_id' => 'exists:categories,id',
                 ];
                 break;
 
