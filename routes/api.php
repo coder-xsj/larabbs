@@ -47,10 +47,10 @@ Route::prefix('v1')
                     ->name('authorizations.destroy');
             });
 
-
+        # 游客可以访问的接口
         Route::middleware('throttle:' . config('api.rate_limits.access'))
             ->group(function (){
-                // 游客可以访问的接口
+
                 // 某个用户的详情
                 Route::get('users/{user}', 'UsersController@show')
                     ->name('users.show');
@@ -74,8 +74,8 @@ Route::prefix('v1')
                 Route::get('users/{user}/replies', 'RepliesController@userIndex')
                     ->name('users.replies.index');
 
+                # 登陆后可以访问的接口
                 Route::middleware('auth:api')->group(function (){
-                    // 登陆后可以访问的接口
                     // 当前登录用户信息
                     Route::get('user', 'UsersController@me')
                         ->name('user.show');
@@ -107,6 +107,10 @@ Route::prefix('v1')
                     // 通知数量 statistics ---> stats
                     Route::get('notifications/stats', 'NotificationsController@stats')
                         ->name('notifications.stats');
+
+                    // 标记消息为已读
+                    Route::patch('user/read/notifications', 'NotificationsController@read')
+                        ->name('user.notifications.read');
                 });
             });
 });
