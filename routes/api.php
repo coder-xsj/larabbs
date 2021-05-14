@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // api版本测试
 Route::prefix('v1')
     ->namespace('Api')
+    ->middleware('change-locale')
     ->name('api.v1.')
     ->group(function (){
         Route::middleware('throttle:' . config('api.rate_limits.sign'))
