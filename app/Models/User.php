@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Auth;
+use Illuminate\Notifications\Notification;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements MustVerifyEmailContract, JWTSubject
@@ -48,8 +49,10 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     // 将消息置0
     public function markAsRead(){
         $this->notification_count = 0;
-        $this->save();
         $this->unreadNotifications->markAsRead();
+        $this->save();
+
+
     }
     /**
      * The attributes that are mass assignable.

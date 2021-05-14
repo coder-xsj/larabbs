@@ -108,9 +108,17 @@ Route::prefix('v1')
                     Route::get('notifications/stats', 'NotificationsController@stats')
                         ->name('notifications.stats');
 
-                    // 标记消息为已读
+                    // 标记消息为已读 一键已读
                     Route::patch('user/read/notifications', 'NotificationsController@read')
                         ->name('user.notifications.read');
+
+                    // 标记单个消息已读
+                    Route::patch('user/read/notifications/{id}', 'NotificationsController@readSingle')
+                        ->name('user.notifications.readSingle');
+
+                    // 当前登录用户权限
+                    Route::get('user/permissions', 'PermissionsController@index')
+                        ->name('user.permissions');
                 });
             });
 });
