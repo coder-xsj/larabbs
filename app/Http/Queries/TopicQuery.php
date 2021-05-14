@@ -1,4 +1,5 @@
 <?php
+namespace App\Http\Queries;
 
 use App\Models\Topic;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -9,7 +10,7 @@ class TopicQuery extends QueryBuilder{
     public function __construct(){
         parent::__construct(Topic::query());
 
-        $this->allowedIncludes('user', 'category')
+        $this->allowedIncludes('user', 'user.roles', 'category')
             ->allowedFilters([
                 'title',
                 AllowedFilter::exact('category_id'),
