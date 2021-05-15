@@ -47,19 +47,78 @@ Route::prefix('v1')
                     ->name('authorizations.destroy');
             });
 
-
-        Route::middleware('throttle' . config('api.rate_limits.access'))
+        # 游客可以访问的接口
+        Route::middleware('throttle:' . config('api.rate_limits.access'))
             ->group(function (){
-                // 游客可以访问的接口
+
                 // 某个用户的详情
                 Route::get('users/{user}', 'UsersController@show')
                     ->name('users.show');
 
-                Route::middleware('auth.api')->group(function (){
-                    // 登陆后可以访问的接口
+                // 分类列表
+                Route::get('categories', 'CategoriesController@index')
+                    ->name('categories.index');
+
+                // 话题列表
+                Route::resource('topics', 'TopicsController')->only(['index', 'show']);
+
+                // 某个用户发布的话题
+                Route::get('users/{user}/topics', 'TopicsController@userIndex')
+                    ->name('users.topics.index');
+
+                // 某个话题的评论列表
+                Route::get('topics/{topic}/replies', 'RepliesController@index')
+                    ->name('topics.replies.index');
+
+                // 某个用户的评论列表
+                Route::get('users/{user}/replies', 'RepliesController@userIndex')
+                    ->name('users.replies.index');
+
+                # 登陆后可以访问的接口
+                Route::middleware('auth:api')->group(function (){
                     // 当前登录用户信息
                     Route::get('user', 'UsersController@me')
                         ->name('user.show');
+
+                    // 编辑登录用户信息
+                    Route::patch('user', 'UsersController@update')
+                        ->name('user.update');
+
+                    // 上传图片
+                    Route::post('images', 'ImagesController@store')
+                        ->name('images.store');
+
+                    // 发布话题
+                    Route::resource('topics', 'TopicsController')
+                        ->only(['store', 'update', 'destroy']);
+
+                    // 发布评论
+                    Route::post('topics/{topic}/replies', 'RepliesController@store')
+                        ->name('topics.replies.store');
+
+                    // 删除评论
+                    Route::delete('topics/{topic}/replies/{reply}', 'RepliesController@destroy')
+                        ->name('topics.replies.destroy');
+
+                    // 用户通知列表
+                    Route::get('notifications', 'NotificationsController@index')
+                        ->name('notifications.index');
+
+                    // 通知数量 statistics ---> stats
+                    Route::get('notifications/stats', 'NotificationsController@stats')
+                        ->name('notifications.stats');
+
+                    // 标记消息为已读 一键已读
+                    Route::patch('user/read/notifications', 'NotificationsController@read')
+                        ->name('user.notifications.read');
+
+                    // 标记单个消息已读
+                    Route::patch('user/read/notifications/{id}', 'NotificationsController@readSingle')
+                        ->name('user.notifications.readSingle');
+
+                    // 当前登录用户权限
+                    Route::get('user/permissions', 'PermissionsController@index')
+                        ->name('user.permissions');
                 });
             });
 });
