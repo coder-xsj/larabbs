@@ -57,6 +57,7 @@ class RegisterController extends Controller
         ], [
             'captcha.required' => '验证码不能为空',
             'captcha.captcha' => '请输入正确的验证码',
+            'password.min' => '密码至少 8 个字符',
         ]);
     }
 
