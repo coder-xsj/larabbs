@@ -7,7 +7,7 @@ use Cache;
 class Link extends Model
 {
     // 允许更新的字段
-    protected $fillable = ['title', 'link'];
+    protected $fillable = ['title', 'link', 'image'];
 
     // 缓存相关配置
     public $cache_key = 'larabbs_links';

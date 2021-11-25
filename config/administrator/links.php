@@ -19,14 +19,18 @@ return [
         'title' => [
             'title' => '书名',
             'sortable' => false,
-//            'output' => function($link){
-//                return  '<a href=' . '"$link->link"' . '></a>';
-//            },
+            'output' => function($link){
+                return  '<a href=' . '"$link->link"' . '></a>';
+            },
+        ],
+        'image' => [
+            'title' => '封面',
+            'sortable' => false,
+            // 默认情况下会直接输出数据，你也可以使用 output 选项来定制输出内容
         ],
         'link' => [
             'title' => '链接',
-//            'output' => function($link){
-//            },
+
             'sortable' => false,
         ],
         'created_at' => [
@@ -44,6 +48,14 @@ return [
         ],
         'link' => [
             'title' => '链接',
+        ],
+        'image' => [
+            'title' => '封面',
+
+//            'type' => 'image',
+//
+//            // 图片上传必须设置图片存放路径
+//            'location' => public_path() . '/uploads/images/links/',
         ],
     ],
 
