@@ -30,7 +30,7 @@
             <div class="text-center mt-1 mb-0 text-muted">资源推荐</div>
             <hr class="mt-2 mb-3">
             @foreach($links as $link)
-                <a class="media mt-1" href="{{ $link->link }}">
+                <a class="media mt-1" href="{{ $link->link }}" target="_blank">
                     <div class="media-left media-middle mr-2 ml-1">
                         <img src="{{ $link->image }}" width="24px" height="24px" class="media-object">
                     </div>
