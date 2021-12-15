@@ -1,61 +1,127 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# 基于 laravel 框
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+架的技术分享社区的设计与实现
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 功能修改
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [ ] QQ 邮箱模板 --- 激活、修改密码、站内通知（网站名称）
 
-## Learning Laravel
+  ![image-20211112003606448](https://i.loli.net/2021/11/12/AvgJyEls1ekZUdc.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- [x] 域名要等备案好
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+  备案/许可证编号为：皖ICP备2021016299号，审核通过日期：2021-11-17。
 
-## Laravel Sponsors
+  在您的网站首页底部中间位置，放置您的备案号并链接至"http://beian.miit.gov.cn/"。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+  公安备案：`皖公网安备 34052102000123号` 2021-11-29
 
-### Premium Partners
+- [x] 图片 url 地址 --- 等上一步
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+- [x] 提示汉化
 
-## Contributing
+  2021-11-25 21:53
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- [x] 资源推荐加上图片
 
-## Code of Conduct
+  2021-11-25 23:15
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- [x] 考虑是否加上友链
 
-## Security Vulnerabilities
+  2021-11-27 0:47
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- [ ] 导航栏是否加上**搜索**功能
+
+  ElasticSearch
+
+  小项目的话 meilisearch 够了 ES 太重
+
+- [ ] 个人中心 --- 关注 --- 话题 --- 评论数量
+
+- [ ] 帖子点赞  --- coffeephp 动画
+
+- [ ] 评论点赞 和 @
+
+- [ ] 帖子内关注功能
+
+- [ ] 最新和热门
+
+- [ ] 第三方登录（QQ，微信）
+
+- [ ] 考虑换个后台模板，用 Dcat-admin --- 但后台功能要重写，工作量有些大
+
+  https://gitee.com/jqhph/dcat-admin
+
+- [ ] 帖子内目录功能
+
+  参考掘金 --- https://segmentfault.com/a/1190000040942905
+
+- [ ] 默认头像
+
+  https://en.gravatar.com/
+
+- [ ] 评论 `禁词` 过滤
+
+- [ ] 
+
+
+
+
+
+
+
+## 样式修改
+
+- [ ] 导航栏 click 事件改为 hover 事件
+
+  https://www.guke1.com/#/md 上的`其它工具` hover 效果
+
+- [ ] 编辑器更改为支持 markdown 的编辑器
+
+  [tui.editor](https://github.com/nhnent/tui.editor)
+
+  ![image-20211125140912532](https://i.loli.net/2021/11/25/DezlNWQaPhZ5IYF.png)
+
+- [ ] 导航栏加载条效果
+
+  https://www.bootcss.com/p/metro-ui-css/progress.html
+
+  ui:https://blog.vini123.com/483
+
+- [ ] 返回顶部功能
+
+  效果参考掘金
+
+- [ ] 个人中心左侧背景
+
+  https://segmentfault.com/u/coder_xsj
+
+  ![image-20211111204714801](https://i.loli.net/2021/11/19/4oJMhEU19yZLfTx.png)
+
+- [ ] 友链样式需要修改
+
+  参考 laravel-china
+
+- [ ] 
+
+
+Laravel8+Vue+AntDesign前后端分离开发框架【旗舰版】https://www.rxthink.cn/
+
+非经营性网站，主要是在生活上、学习上、工作上的个人分享，希望大家健康快乐每一天
+
+http://112.124.21.240:81/#
+
+95187 ---> 3
+
+
+
+
+
+```sql
+php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
+```
+
