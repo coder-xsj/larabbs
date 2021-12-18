@@ -44,7 +44,9 @@ Route::prefix('v1')
                 // 小程序登录
                 Route::post('weapp/authorizations', 'AuthorizationsController@weappStore')
                     ->name('weapp.authortzations.store');
-
+                // 小程序注册
+                Route::post('weapp/users', 'UsersController@weappStore')
+                    ->name('weapp.users.store');
                 // 删除和刷新 token 的路由
                 Route::put('authorizations/current', 'AuthorizationsController@update')
                     ->name('authorizations.update');
