@@ -60,6 +60,17 @@
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">手机号码</label>
+
+                                <div class="col-md-6">
+                                    <input id="phone" type="text" class="form-control" name="phone" required>
+                                </div>
+                                <button type="button" class="btn btn-primary">
+                                     发送验证码
+                                </button>
+
+                            </div>
 
                             <div class="form-group row">
                                 <label for="captcha" class="col-md-4 col-form-label text-md-right">验证码</label>

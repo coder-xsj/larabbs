@@ -21,8 +21,8 @@ return [
         'aliyun' => [
             'access_key_id' => env('SMS_ALIYUN_ACCESS_KEY_ID'),
             'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET'),
-            'sign_name' => 'larabbs',
-            'template' => [
+            'sign_name' => '记录我的快乐生活',
+            'templates' => [
                 'register' => env('SMS_ALIYUN_TEMPLATE_REGISTER')
             ],
         ],

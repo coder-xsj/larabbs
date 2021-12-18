@@ -117,6 +117,8 @@ return [
     'url'         => ':attribute 格式不正确。',
     'uuid'        => ':attribute 必须是有效的 UUID。',
 
+    'phone'       => ':attribute 不对。',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
