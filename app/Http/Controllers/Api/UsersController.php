@@ -31,6 +31,7 @@ class UsersController extends Controller
         return (new UserResource($user))->showSensitiveFields();
     }
 
+    // 小程序登录
     public function weappStore(UserRequest $request)
     {
         // 缓存中是否存在对应的 key
