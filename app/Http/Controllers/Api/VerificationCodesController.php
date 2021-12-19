@@ -26,11 +26,14 @@ class VerificationCodesController extends Controller
         }
 
 //        $phone = $request->phone;
-         $phone = $captchaData['phone'];
+        $phone = $captchaData['phone'];
+
+
         // 如果不是生产环境验证码统一
         if(!app()->environment('production')){
             $code = '1234';
         }else{
+            die('大面');
             // 生成4位随机数，左侧补0
             $code = str_pad(random_int(1, 9999), 4, 0, STR_PAD_LEFT);
             // var_dump($phone, config('easysms.gateways.aliyun.templates.register'), $code );

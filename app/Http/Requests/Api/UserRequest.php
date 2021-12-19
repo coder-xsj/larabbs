@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
+//use Dingo\Api\Http\FormRequest;
 
 class UserRequest extends FormRequest
 {
@@ -33,14 +34,17 @@ class UserRequest extends FormRequest
                     'verification_code' => 'required|string',
                 ];
                 break;
+            case 'PUT':
             case 'PATCH':
-                $userId = auth('api')->id();
-
+                $userId = \Auth::guard('api')->id();
+//                dd($userId);
+//                var_dump($userId);
+//                die;
                 return [
                     'name' => 'between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . $userId,
-                    'email' => 'email|unique:users,email,' . $userId,
+                    'email' => 'email',
                     'introduction' => 'max:80',
-                    'avatar_image_id' => 'exists:images,id,type,avatar,user_id,' . $userId,
+                    'avatar_image_id' => 'exists:images,id,type,avatar,user_id,'. $userId,
                 ];
                 break;
         }
@@ -51,6 +55,7 @@ class UserRequest extends FormRequest
         return [
             'verification_key' => '短信验证码 key',
             'verification_code' => '短信验证码',
+            'introduction' => '个人简介',
         ];
     }
 
@@ -60,6 +65,7 @@ class UserRequest extends FormRequest
             'name.regex' => '用户名只支持英文、数字、横杆和下划线。',
             'name.between' => '用户名必须介于 3 - 25 个字符之间。',
             'name.required' => '用户名不能为空。',
+            'introduction.max' => '个人简介最多 80 个字符',
         ];
     }
 }

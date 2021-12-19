@@ -12,7 +12,6 @@ use App\Http\Requests\Api\SocialAuthorizationRequest;
 Use App\Http\Requests\Api\AuthorizationRequest;
 use App\Http\Controllers\Controller;
 
-
 class AuthorizationsController extends Controller
 {
     protected function respondWithToken($token){
@@ -86,8 +85,12 @@ class AuthorizationsController extends Controller
                 break;
 
         }
+        $ttl = 365 * 24 * 60;
+        $token = auth('api')->setTTL($ttl)->login($user);
         // login 方法为某一个用户模型生成 token
-        $token = auth('api')->login($user);
+//        $token = auth('api')->login($user);
+//        $token = \Auth::guard('api')->login($user);
+
         return $this->respondWithToken($token)->setStatusCode(201);
     }
 
@@ -111,6 +114,7 @@ class AuthorizationsController extends Controller
         // 根据 code 获取 access_token、openid
         $miniProgram = \EasyWeChat::miniProgram();
 
+//        die;
         $data = $miniProgram->auth->session($code);
 
         // 如果有错误，说明 code 已过期或者不正确，返回 401 错误
