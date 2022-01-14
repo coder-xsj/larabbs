@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reply;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\ReplyRequest;
 use Auth;
 class RepliesController extends Controller

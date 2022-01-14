@@ -10,6 +10,12 @@
                 <h5><strong>个人简介</strong></h5>
                 <p>{{ $user->introduction }}</p>
                 <hr>
+                <h5><strong>发帖数</strong></h5>
+                <p>{{ $topicNum }}</p>
+                <hr>
+                <h5><strong>评论数</strong></h5>
+                <p>{{ $replyNum }}</p>
+                <hr>
                 <h5><strong>注册于</strong></h5>
                 <p>{{ $user->created_at->diffForHumans() }}</p>
                 <h5><strong>最后活跃时间</strong></h5>

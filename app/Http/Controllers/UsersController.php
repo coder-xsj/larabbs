@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Topic;
+use App\Models\Reply;
 use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
+use function Symfony\Component\Translation\t;
 
 class UsersController extends Controller
 {
@@ -17,7 +20,12 @@ class UsersController extends Controller
     }
 
     public function show(User $user){
-        return view('users.show', compact('user'));
+        // 发帖数
+        $topicNum = $user->topics->count();
+        // 评论数
+        $replyNum = $user->replies()->count();
+        // 粉丝数
+        return view('users.show', compact('user', 'topicNum', 'replyNum'));
     }
 
     public function edit(User $user){

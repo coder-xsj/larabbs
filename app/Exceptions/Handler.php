@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler
         return config('app.debug') ? [
             'message' => $e->getMessage(),
             'code' => $e->getCode(),
-            'exception' => $e->get_class($e),
+//            'exception' => $e->get_class($e),
             'file' => $e->getFile(),
             'line' => $e->getLine(),
             'trace' => collect($e->getTrace())->map(function ($trace){
