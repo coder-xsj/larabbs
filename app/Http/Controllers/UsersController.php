@@ -12,7 +12,9 @@ use function Symfony\Component\Translation\t;
 
 class UsersController extends Controller
 {
-    //
+    // modekeys
+    protected $primaryKey = 'id';
+
     public function __construct(){
         $this->middleware('auth', [
             'except' => ['show'],
@@ -45,5 +47,19 @@ class UsersController extends Controller
         $user->update($data);
         return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功');
 
+    }
+
+    // 关注列表
+    public function followings(User $user) {
+        $users = $user->followings()->paginate(10);
+        $title = $user->name . ' 关注的人';
+        return view('users.show_follow', compact('users', 'title'));
+    }
+
+    // 粉丝列表
+    public function followers(User $user) {
+        $users = $user->followers()->paginate(10);
+        $title = $user->name . ' 的粉丝';
+        return view('users.show_follow', compact('users', 'title'));
     }
 }

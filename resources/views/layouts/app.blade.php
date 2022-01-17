@@ -14,6 +14,7 @@
     <meta name="keywords" content="@yield('keyword', setting('seo_keyword', 'LaraBBS,社区,论坛,开发者论坛。'))">
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/icon-longmao.png') }}" sizes="96x96">
     @yield('styles')
 </head>
 

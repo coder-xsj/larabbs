@@ -25,19 +25,15 @@ class VerificationCodesController extends Controller
             throw new AuthenticationException('验证码错误');
         }
 
-//        $phone = $request->phone;
         $phone = $captchaData['phone'];
-
 
         // 如果不是生产环境验证码统一
         if(!app()->environment('production')){
             $code = '1234';
         }else{
-            die('大面');
-            // 生成4位随机数，左侧补0
-            $code = str_pad(random_int(1, 9999), 4, 0, STR_PAD_LEFT);
-            // var_dump($phone, config('easysms.gateways.aliyun.templates.register'), $code );
-
+            die('哒哒哒');
+            // 生成 6位随机数，左侧补 0
+            $code = str_pad(random_int(1, 9999), 6, 0, STR_PAD_LEFT);
             try {
                 $result = $easySms->send($phone, [
                     'template' => config('easysms.gateways.aliyun.templates.register'),

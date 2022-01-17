@@ -56,3 +56,9 @@ Route::resource('notifications', 'NotificationsController', ['only' => 'index'])
 
 // 后台拒绝路由
 Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
+
+// 关注
+Route::get('/users/{user}/followings', 'UsersController@followings')->name('users.followings');
+
+// 粉丝
+Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.followers');

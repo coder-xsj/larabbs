@@ -36,7 +36,6 @@ class TopicsController extends Controller
 		return view('topics.index', compact('topics', 'active_users', 'links', 'friends'));
 	}
 
-
     public function show(Request $request, Topic $topic)
     {
         // URL 矫正
