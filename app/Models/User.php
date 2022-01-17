@@ -126,10 +126,6 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
         $this->followings()->detach($user_ids);
     }
 
-    public function statuses() {
-        return $this->hasMany(Status::class);
-    }
-
     // 判断当前登录的用户 A 是否关注了用户 B
     public function isFollowing($user_id) {
         return $this->followings->contains($user_id);

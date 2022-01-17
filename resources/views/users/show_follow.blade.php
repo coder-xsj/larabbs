@@ -13,6 +13,9 @@
                     <a href="{{ route('users.show', $user) }}">
                         {{ $user->name }}
                     </a>
+                    @if (Auth::check())
+                        @include('users._follow_form')
+                    @endif
                 </div>
             @endforeach
         </div>

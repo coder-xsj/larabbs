@@ -57,8 +57,14 @@ Route::resource('notifications', 'NotificationsController', ['only' => 'index'])
 // 后台拒绝路由
 Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
 
-// 关注
+// 关注列表
 Route::get('/users/{user}/followings', 'UsersController@followings')->name('users.followings');
 
-// 粉丝
+// 粉丝列表
 Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.followers');
+
+// 关注用户
+Route::post('/users/followers/{user}', 'FollowersController@store')->name('followers.store');
+
+// 取关用户
+Route::delete('/users/followers/{user}', 'FollowersController@destroy')->name('followers.destroy');

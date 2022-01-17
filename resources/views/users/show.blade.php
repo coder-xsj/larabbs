@@ -6,6 +6,9 @@
     <div class="col-lg-3 col-md-3 hidden-sm hidden-xs user-info">
         <div class="card ">
             <img class="card-img-top" src="{{ $user->avatar }}" alt="{{ $user->name }}">
+            @if (Auth::check())
+                @include('users._follow_form')
+            @endif
             <div class="card-body">
                 <h5><strong>个人简介</strong></h5>
                 <p>{{ $user->introduction }}</p>
@@ -31,7 +34,7 @@
             </div>
         </div>
         <hr>
-        {{-- 用户发布的内容 --}}
+        {{-- 关注与粉丝 --}}
         <section class="stats mt-2">
             @include('shared._stats', ['user' => Auth::user()])
         </section>
