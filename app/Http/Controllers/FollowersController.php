@@ -18,7 +18,7 @@ class FollowersController extends Controller
         if (!Auth::user()->isFollowing($user->id)) {
             Auth::user()->follow($user->id);
         }
-        return redirect()->route('users.followers', Auth::user('id'));
+        return redirect()->back()->with('success', '关注成功');
     }
 
     public function destroy(User $user) {
@@ -27,7 +27,8 @@ class FollowersController extends Controller
             Auth::user()->unfollow($user->id);
         }
 
-        return redirect()->route('users.followers', Auth::user('id'));
+        return redirect()->back()->with('success', '取关成功');
+
     }
 
 }
