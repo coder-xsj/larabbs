@@ -23,7 +23,6 @@
     </div>
 </div>
 @endif
-
 @if(count($links))
     <div class="card mt-4">
         <div class="card-body pt-2">
@@ -43,7 +42,7 @@
     </div>
 @endif
 
-@if(count($links))
+@if(count($friends))
     <div class="card mt-4">
         <div class="card-body pt-2">
             <div class="text-center mt-1 mb-0 text-muted">友情链接</div>
