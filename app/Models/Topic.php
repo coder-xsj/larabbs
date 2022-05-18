@@ -20,6 +20,11 @@ class Topic extends Model
     public function replies(){
         return $this->hasMany(Reply::class);
     }
+    // 获取当前话题前 5 条回复
+    public function topReplies() {
+        return $this->replies()->limit(5);
+    }
+
     public function scopeWithOrder($query, $order)
     {
         // 不同的排序，使用不同的数据读取逻辑

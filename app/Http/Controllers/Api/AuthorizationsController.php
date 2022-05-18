@@ -10,7 +10,7 @@ use Overtrue\Socialite\AccessToken;
 use Illuminate\Auth\AuthenticationException;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
 Use App\Http\Requests\Api\AuthorizationRequest;
-use App\Http\Controllers\Controller;
+//use App\Http\Controllers\Controller;
 
 class AuthorizationsController extends Controller
 {
@@ -103,17 +103,14 @@ class AuthorizationsController extends Controller
     public function destroy(){
         auth('api')->logout();
         return response(null, 204);
-
-
     }
 
     public function weappStore(WeappAuthorizationRequest $request) {
         $code = $request->code;
 
+//        dd($code);
         // 根据 code 获取 access_token、openid
         $miniProgram = \EasyWeChat::miniProgram();
-
-//        die;
         $data = $miniProgram->auth->session($code);
 
         // 如果有错误，说明 code 已过期或者不正确，返回 401 错误
@@ -124,6 +121,7 @@ class AuthorizationsController extends Controller
         // 找到 openid 对应用户
         $user = User::where('weapp_openid', $data['openid'])->first();
 
+//        dd($user);
         $attributes['weixin_session_key'] = $data['session_key'];
 
         // 未找到对应用户则需要提交用户名密码进行用户绑定

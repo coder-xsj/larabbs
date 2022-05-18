@@ -34,7 +34,8 @@ class TopicReplied extends Notification
     public function via($notifiable)
     {
         // 开启通知的频道
-        return ['database', 'mail', JPushChannel::class];
+        return ['database', 'mail'];
+//        return ['database', 'mail', JPushChannel::class];
     }
 
     // 数据库类型通知
@@ -75,12 +76,12 @@ class TopicReplied extends Notification
 
     }
 
-    public function toJPush($notifiable, PushPayload $payload): PushPayload{
-        return $payload
-            ->setPlatform('all')
-            ->addRegistrationId($notifiable->registeration_id)
-            ->setNotificationAlert(strip_tags($this->reply->content));
-    }
+//    public function toJPush($notifiable, PushPayload $payload): PushPayload{
+//        return $payload
+//            ->setPlatform('all')
+//            ->addRegistrationId($notifiable->registeration_id)
+//            ->setNotificationAlert(strip_tags($this->reply->content));
+//    }
 
     /**
      * Get the array representation of the notification.

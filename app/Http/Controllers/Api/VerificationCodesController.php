@@ -27,11 +27,10 @@ class VerificationCodesController extends Controller
 
         $phone = $captchaData['phone'];
 
-        // 如果不是生产环境验证码统一
+        // 如果不是生产环境验证码统一为 1234
         if(!app()->environment('production')){
             $code = '1234';
         }else{
-            die('哒哒哒');
             // 生成 6位随机数，左侧补 0
             $code = str_pad(random_int(1, 9999), 6, 0, STR_PAD_LEFT);
             try {

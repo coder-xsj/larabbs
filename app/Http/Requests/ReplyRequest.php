@@ -4,8 +4,6 @@ namespace App\Http\Requests;
 
 class ReplyRequest extends Request
 {
-
-
     public function rules()
     {
        return [
@@ -18,6 +16,8 @@ class ReplyRequest extends Request
     {
         return [
             // Validation messages
+            'content.required' => '内容不能为空',
+            'content.min' => '内容必须至少两个字符',
         ];
     }
 }

@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// api版本测试
+// api 版本测试
 Route::prefix('v1')
     ->namespace('Api')
     ->middleware('change-locale')
@@ -134,6 +134,10 @@ Route::prefix('v1')
                     // 标记消息为已读 一键已读
                     Route::patch('user/read/notifications', 'NotificationsController@read')
                         ->name('user.notifications.read');
+
+                    // 因为微信不支持 PATCH 请求增加一个对应的 PUT 请求，标记消息为已读 一键已读
+                    Route::put('user/read/notifications', 'NotificationsController@read')
+                        ->name('user.notifications.read.put');
 
                     // 标记单个消息已读
                     Route::patch('user/read/notifications/{id}', 'NotificationsController@readSingle')
